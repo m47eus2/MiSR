@@ -45,7 +45,20 @@ def przyklad_1():
 
 
 def zadanie_1():
-    pass # zastąp tę linię swoim kodem
+    R = SO3.Rz(np.pi/-3)*SO3.Ry(np.pi/6)*SO3.Rx(np.pi/4)
+    print(R)
+    #Przy mnożeniu lewostronnym (od prawej do lewej) obracanie występuje wokół stałego układu odniesienia. Przy mnożeniu prawostronnym (od lewej do prawej) obracanie występuje wokół osi nowego układu odniesienia. 
+    #Roll to obrót wokół osi x, Pitch to obrót wokół osi y, a yaw to obrót wokół osi z
+
+    e1, e2, e3 = R.eul(unit='deg')
+    #Uzyskane kąty dotyczną osi Z,Y,Z
+    print('Kąty eulera: ',e1,' ',e2,' ',e3)
+    e1, e2, e3 = R.eul()
+    R1 = SO3.Eul([e1, e2, e3])
+    print(R1)
+
+    R.animate(frame='A', style='rviz', width=1, dims=[0,3], nframes=100)
+    plt.show()
 
 def zadanie_2():
     pass # zastąp tę linię swoim kodem
@@ -54,4 +67,4 @@ def zadanie_2():
 
 # wykonywanie wybranej funkcji
 if __name__ == '__main__':
-    przyklad_1()
+    zadanie_1()
