@@ -60,6 +60,47 @@ def zadanie_1():
     R.animate(frame='A', style='rviz', width=1, dims=[0,3], nframes=100)
     plt.show()
 
+    det_R = np.linalg.det(R.A)
+    inv_R = np.linalg.inv(R.A)
+    T_R = np.transpose(R.A)
+
+    n = R.A[:, 0]
+    o = R.A[:, 1]
+    a = R.A[:, 2]
+
+    nTo = np.transpose(n)@o
+    oTa = np.transpose(o)@a
+    aTn = np.transpose(a)@n
+
+    norm_n = np.linalg.norm(n)
+    norm_o = np.linalg.norm(o)
+    norm_a = np.linalg.norm(a)
+
+    nxo = np.cross(n, o)
+    oxa = np.cross(o, a)
+    axn = np.cross(a, n)
+
+    print('det(R) = ', det_R)
+    print('R^(-1) = ', inv_R)
+    print('R^T = ', T_R)
+
+    print('n = ', n)
+    print('o = ', o)
+    print('a = ', a)
+    
+    print('n^T*o = ', nTo)
+    print('o^T*a = ', oTa)
+    print('a^T*n = ', aTn)
+
+    print('norm(n) = ', norm_n)
+    print('norm(o) = ', norm_o)
+    print('norm(a) = ', norm_a)
+
+    print('n x o = ', nxo)
+    print('o x a = ', oxa)
+    print('a x n = ', axn)
+
+
 def zadanie_2():
     pass # zastąp tę linię swoim kodem
 
