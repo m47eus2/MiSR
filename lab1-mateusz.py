@@ -102,10 +102,46 @@ def zadanie_1():
 
 
 def zadanie_2():
-    pass # zastąp tę linię swoim kodem
+    #Zmienne symboliczne
+    l1, l2, l3, l4 = symbol('l1, l2, l3, l4')
+    theta1, theta3 = symbol('theta1, theta3')
+    d2 = symbol('d2')
+
+    T1 = SE3(0,0,l1)
+    T2 = SE3.Rx(np.pi/-2)
+    AB0 = T1*T2
+
+    T1 = SE3(0,0,l2)
+    T2 = SE3.Rz(theta1*-1)
+    T3 = SE3.Rx(np.pi/-2)
+    A01 = T1*T2*T3
+
+    T1 = SE3(0,0,d2)
+    T2 = SE3.Rz(np.pi/-2)
+    T3 = SE3(l3,0,0)
+    A12 = T1*T2*T3
+
+    T1 = SE3.Rz(theta3*-1)
+    T2 = SE3(l4,0,0)
+    A23 = T1*T2
+
+    T1 = SE3.Rz(np.pi/2)
+    T2 = SE3.Rx(np.pi/2)
+    A33 = T1*T2
+
+    print('AB0:')
+    print(AB0)
+    print('A01:')
+    print(A01)
+    print('A12:')
+    print(A12)
+    print('A23:')
+    print(A23)
+    print("A33':")
+    print(A33)
 
 # ...
 
 # wykonywanie wybranej funkcji
 if __name__ == '__main__':
-    zadanie_1()
+    zadanie_2()
