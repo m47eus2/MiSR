@@ -42,8 +42,6 @@ def przyklad_1():
     T3.animate(frame='A', style='rviz', width=1, dims=[0,3], nframes=100)
     plt.show()
 
-
-
 def zadanie_1():
     R = SO3.Rz(np.pi/-3)*SO3.Ry(np.pi/6)*SO3.Rx(np.pi/4)
     print(R)
@@ -100,34 +98,17 @@ def zadanie_1():
     print('o x a = ', oxa)
     print('a x n = ', axn)
 
-
 def zadanie_2():
     #Zmienne symboliczne
     l1, l2, l3, l4 = symbol('l1, l2, l3, l4')
     theta1, theta3 = symbol('theta1, theta3')
     d2 = symbol('d2')
 
-    T1 = SE3(0,0,l1)
-    T2 = SE3.Rx(np.pi/-2)
-    AB0 = T1*T2
-
-    T1 = SE3(0,0,l2)
-    T2 = SE3.Rz(theta1*-1)
-    T3 = SE3.Rx(np.pi/-2)
-    A01 = T1*T2*T3
-
-    T1 = SE3(0,0,d2)
-    T2 = SE3.Rz(np.pi/-2)
-    T3 = SE3(l3,0,0)
-    A12 = T1*T2*T3
-
-    T1 = SE3.Rz(theta3*-1)
-    T2 = SE3(l4,0,0)
-    A23 = T1*T2
-
-    T1 = SE3.Rz(np.pi/2)
-    T2 = SE3.Rx(np.pi/2)
-    A33 = T1*T2
+    AB0 = SE3(0,0,l1)*SE3.Rx(np.pi/-2)
+    A01 = SE3(0,0,l2)*SE3.Rz(theta1*-1)*SE3.Rx(np.pi/-2)
+    A12 = SE3(0,0,d2)*SE3.Rz(np.pi/-2)*SE3(l3,0,0)
+    A23 = SE3.Rz(theta3*-1)*SE3(l4,0,0)
+    A33 = SE3.Rz(np.pi/2)*SE3.Rx(np.pi/2)
 
     print('AB0:')
     print(AB0)
@@ -140,8 +121,18 @@ def zadanie_2():
     print("A33':")
     print(A33)
 
-# ...
+def zadanie_3():
+    dp = np.array([1, -2, 2])
+
+    ABS = SE3.Rt(SO3.Rz(np.pi/2), np.array([2,5,0]))
+    APS = SE3.Rt(SO3.Ry(np.pi), np.array([3,-6,4]))
+    ASP = APS.inv()
+    
+    ds = ASP*dp
+    db = ABS*ds
+    print(db.flatten())
+
 
 # wykonywanie wybranej funkcji
 if __name__ == '__main__':
-    zadanie_2()
+    zadanie_3()
