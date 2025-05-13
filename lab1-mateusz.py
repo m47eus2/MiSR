@@ -132,6 +132,15 @@ def zadanie_3():
     db = ABS*ds
     print(db.flatten())
 
+    #Wykres
+    s = ABS         #Układ S względem układu B
+    p = ABS*ASP     #Układ P względem układu B
+
+    s.plot(frame='S', color='red', width=1)
+    p.plot(frame='P', color='blue', width=1)
+    plt.quiver(0,0,0,db[0],db[1],db[2],color='green')
+    plt.show()
+    
 
 # wykonywanie wybranej funkcji
 if __name__ == '__main__':
