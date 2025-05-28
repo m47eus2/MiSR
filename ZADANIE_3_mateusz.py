@@ -53,9 +53,9 @@ def zadanie_3():
         smooth_traj = check_smooth_traj(sol)
 
     traj = mstraj(sol.q, dt=0.2, tacc=0.2, qdmax=0.3)
-    rtb.xplot(traj.q, block=True)
+    #rtb.xplot(traj.q, block=True)
 
-    robot.plot(traj.q, backend="swift", loop=True)
+    robot.plot(traj.q, backend = 'swift', loop=True)
 
 
 if __name__ == '__main__':

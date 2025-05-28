@@ -89,7 +89,11 @@ def przyklad_1():
         env.step(0.005)
 
 def zadanie_1():
-    pass # zastąp tę linię swoim kodem
+    robot = rtb.models.DH.Panda()
+    T = SE3(0.7, 0.2, 0.1) * SE3.OA([0, 1, 0], [0, 0, -1])
+    solution = robot.ikine_LM(T)
+    traj = jtraj(robot.qz, solution.q, 50)
+    robot.plot(traj.q, backend = 'pyplot', limits=[-0.25, 1.25, -0.5, 0.5, 0, 1], movie='panda_pyplot.gif')
     
 def zadanie_2():
     pass # zastąp tę linię swoim kodem
@@ -101,8 +105,8 @@ def zadanie_3():
 
 # wykonywanie wybranej funkcji
 if __name__ == '__main__':
-    przyklad_1()
+    #przyklad_1()
     #...
-    #zadanie_1()
+    zadanie_1()
     #zadanie_2()
     #zadanie_3()
